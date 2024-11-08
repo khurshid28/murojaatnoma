@@ -4,8 +4,13 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const fs = require("fs");
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, {});
+    let httpsOptions = {
+        key: fs.readFileSync("./secrets/cert.key"),
+        cert: fs.readFileSync("./secrets/cert.crt"),
+    };
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, { httpsOptions });
     app.enableCors();
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
     app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));

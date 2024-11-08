@@ -6,14 +6,14 @@ import * as multer from 'multer';
 
 import * as morgan from "morgan"
 
-
+import * as fs from "fs"
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule,{
-    
-    
-    
-  });
+  let httpsOptions = {
+    key : fs.readFileSync("./secrets/cert.key"),
+    cert : fs.readFileSync("./secrets/cert.crt"),
+  }
+  const app = await NestFactory.create(AppModule,{httpsOptions});
   app.enableCors()
   app.use(morgan(':method :url :status :res[content-length] - :response-time ms')
   )
