@@ -133,7 +133,7 @@ let BotService = class BotService {
                 inline_keyboard: [[{
                             text: "Yakunlash / bekor qilish",
                             web_app: {
-                                url: this.config.get("WEB_LINK") + "?ariza_id=" + ariza.id
+                                url: this.config.get("FINISH_URL") + "?ariza_id=" + `${ariza.id}`
                             }
                         }]]
             }
