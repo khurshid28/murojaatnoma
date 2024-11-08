@@ -10,9 +10,11 @@ import * as morgan from "morgan"
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule,{
-    // cors: true,
+    
+    
     
   });
+  app.enableCors()
   app.use(morgan(':method :url :status :res[content-length] - :response-time ms')
   )
 
