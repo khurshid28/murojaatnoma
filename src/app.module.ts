@@ -31,7 +31,7 @@ import { diskStorage } from 'multer';
           return {
             type: config.get("DB_TYPE"),
             host: config.get("DB_HOST"),
-            port: parseInt(config.get("DB_PORT").replaceAll(" ","")),
+            port: parseInt(config.get("DB_PORT")),
             username: config.get("DB_USER"),
             password: config.get("DB_PASSWORD"),
             database: config.get("DB_NAME"),
