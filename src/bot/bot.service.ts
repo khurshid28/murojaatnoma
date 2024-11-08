@@ -171,7 +171,7 @@ export class BotService implements OnModuleInit {
                             inline_keyboard: [[{
                                 text: "Murojaat qilish",
                                 web_app: {
-                                    url: this.config.get("WEB_LINK")
+                                    url: this.config.get("WEB_LINK") + `?chat_id=${msg.from.id}`
                                 }
                             }]]
                         }

@@ -10,8 +10,7 @@ async function bootstrap() {
         key: fs.readFileSync("../secrets/cert.key"),
         cert: fs.readFileSync("../secrets/cert.crt"),
     };
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, { httpsOptions });
-    app.enableCors();
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, { httpsOptions, cors: true });
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
     app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
     app.use(bodyParser.text({ type: 'text/html' }));
