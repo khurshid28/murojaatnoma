@@ -139,7 +139,7 @@ export class BotService implements OnModuleInit {
 
     public async createArizaMessage(ariza: ArizaEntity) {
         const opts = {
-            caption :`F.I.O: ${ariza.fullname}\nSana: ${this.ddmmYYY( new Date())}`,
+            caption :`F.I.O: ${ariza.fullname}\nSana: ${this.ddmmYYY( new Date())}\n\n15 kun mobaynida murojaatga javob berishingizni so'raymiz !!!`,
             reply_markup: {
                 resize_keyboard: true,
                 inline_keyboard: [[{
