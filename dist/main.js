@@ -7,8 +7,8 @@ const morgan = require("morgan");
 const fs = require("fs");
 async function bootstrap() {
     let httpsOptions = {
-        key: fs.readFileSync("./secrets/cert.key"),
-        cert: fs.readFileSync("./secrets/cert.crt"),
+        key: fs.readFileSync("../secrets/cert.key"),
+        cert: fs.readFileSync("../secrets/cert.crt"),
     };
     const app = await core_1.NestFactory.create(app_module_1.AppModule, { httpsOptions });
     app.enableCors();
