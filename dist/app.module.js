@@ -33,7 +33,7 @@ exports.AppModule = AppModule = __decorate([
                     return {
                         type: config.get("DB_TYPE"),
                         host: config.get("DB_HOST"),
-                        port: parseInt(config.get("DB_PORT")),
+                        port: parseInt(config.get("DB_PORT").replaceAll(" ", "")),
                         username: config.get("DB_USER"),
                         password: config.get("DB_PASSWORD"),
                         database: config.get("DB_NAME"),
