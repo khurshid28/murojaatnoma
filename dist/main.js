@@ -5,9 +5,7 @@ const app_module_1 = require("./app.module");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, {
-        cors: true,
-    });
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, {});
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
     app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
     app.use(bodyParser.text({ type: 'text/html' }));
