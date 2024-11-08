@@ -158,6 +158,7 @@ let BotService = class BotService {
                                     }]]
                         }
                     };
+                    console.log(this.config.get("WEB_LINK") + `?chat_id=${msg.from.id}`);
                     this.bot.sendMessage(msg.from.id, "Assalomu alaykum 😊, " + (msg.from.first_name ?? "") + " " + (msg.from.last_name ?? "") + "\nMurojaat qilish uchun tugmani bosing.", opts);
                 }
             }
