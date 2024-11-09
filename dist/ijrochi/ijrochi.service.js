@@ -41,6 +41,14 @@ let IjrochiService = class IjrochiService {
         let ijrochilar = await this.ijrochiRepo.find();
         return ijrochilar;
     }
+    async delete(id) {
+        let ijrochi = await this.ijrochiRepo.delete({
+            id
+        });
+        if (!ijrochi) {
+            throw new common_1.NotFoundException("Ijrochi topilmadi");
+        }
+    }
 };
 exports.IjrochiService = IjrochiService;
 exports.IjrochiService = IjrochiService = __decorate([

@@ -6,4 +6,5 @@ export declare class IjrochiController {
     getAll(): Promise<import("./entity/ijrochi.entity").IjrochiEntity[]>;
     getOne(id: number, arizalar: string): Promise<import("./entity/ijrochi.entity").IjrochiEntity>;
     create(body: CreateIjrochiDto): Promise<import("./entity/ijrochi.entity").IjrochiEntity>;
+    delete(id: number): Promise<void>;
 }

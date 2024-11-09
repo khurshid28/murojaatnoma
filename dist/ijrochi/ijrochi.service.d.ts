@@ -7,4 +7,5 @@ export declare class IjrochiService {
     getOne(id: number, arizalar: string): Promise<IjrochiEntity>;
     create(body: CreateIjrochiDto): Promise<IjrochiEntity>;
     getAll(): Promise<IjrochiEntity[]>;
+    delete(id: number): Promise<void>;
 }

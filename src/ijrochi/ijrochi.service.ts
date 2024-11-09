@@ -40,5 +40,16 @@ export class IjrochiService {
 
     }
 
+    async delete(id: number,) {
+        let ijrochi = await this.ijrochiRepo.delete({
+            id
+        });
+
+        if (!ijrochi) {
+            throw new NotFoundException("Ijrochi topilmadi");
+        }
+
+    }
+
 
 }

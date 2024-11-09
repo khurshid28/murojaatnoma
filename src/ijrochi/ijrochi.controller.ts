@@ -1,5 +1,5 @@
 
-import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Param, ParseBoolPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, ParseBoolPipe, Post, Put, Query } from '@nestjs/common';
 import { IjrochiService } from './ijrochi.service';
 import { CreateIjrochiDto } from './dto/create-ijrochi.dto';
 
@@ -27,6 +27,12 @@ export class IjrochiController {
     @HttpCode(HttpStatus.CREATED)
     async create(@Body() body: CreateIjrochiDto) {
         return await this.ijrochiService.create(body);
+    }
+
+    @Delete('/:id')
+    @HttpCode(HttpStatus.OK)
+    async delete(@Param("id") id: number,) {
+        return await this.ijrochiService.delete(id);
     }
 
 }

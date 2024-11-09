@@ -29,6 +29,9 @@ let IjrochiController = class IjrochiController {
     async create(body) {
         return await this.ijrochiService.create(body);
     }
+    async delete(id) {
+        return await this.ijrochiService.delete(id);
+    }
 };
 exports.IjrochiController = IjrochiController;
 __decorate([
@@ -55,6 +58,14 @@ __decorate([
     __metadata("design:paramtypes", [create_ijrochi_dto_1.CreateIjrochiDto]),
     __metadata("design:returntype", Promise)
 ], IjrochiController.prototype, "create", null);
+__decorate([
+    (0, common_1.Delete)('/:id'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], IjrochiController.prototype, "delete", null);
 exports.IjrochiController = IjrochiController = __decorate([
     (0, common_1.Controller)('ijrochi'),
     __param(0, (0, common_1.Inject)()),
