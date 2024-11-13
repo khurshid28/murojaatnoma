@@ -164,8 +164,16 @@ let BotService = class BotService {
                 if (msg.text == "/id") {
                     this.bot.sendMessage(msg.from.id, "Sizning id : " + `${msg.from.id}`);
                 }
+                if (msg.text == "/monitoring" && (msg.from.id == "164461340" || msg.from.id == "2053690211")) {
+                    var exelPath = path.join(__dirname, "..", "..", "template", "monitoring.xlsx");
+                    var data = fs.createReadStream(exelPath);
+                    this.bot.sendDocument(msg.from.id, data, {
+                        caption: "Murojaatlar statistikasi"
+                    });
+                }
             }
             catch (error) {
+                console.log(error);
                 this.bot.sendMessage(msg.from.id, "Serverda muommo sodir bo'ldi");
             }
         });

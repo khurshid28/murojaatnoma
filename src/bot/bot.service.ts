@@ -62,23 +62,23 @@ export class BotService implements OnModuleInit {
             }
         };
         if (body.response_type == "text") {
-            await this.bot.sendMessage(chatId, "Ijrochi: \n" + body.response+`\n\nAriza raqami: ${id}\nBaholang 😊`,options);
+            await this.bot.sendMessage(chatId, "Ijrochi: \n" + body.response + `\n\nAriza raqami: ${id}\nBaholang 😊`, options);
         } else {
             let filepath = path.join(__dirname, "..", "..", body.response)
             console.log(filepath);
             let filedata = fs.createReadStream(filepath,);
 
-            await this.bot.sendDocument(chatId, filedata,options);
+            await this.bot.sendDocument(chatId, filedata, options);
 
         }
-       
+
 
         // await this.bot.sendMessage(chatId, `Ariza raqami: ${id}\nBaholang 😊`, options);
     }
 
     public async sendCancelMessage(id: number, chatId: string, body: CancelArizaDto,) {
         var option = {
-            caption : `Ariza raqami: ${id}\nAfsuski ariza bekor qilindi 😓`,
+            caption: `Ariza raqami: ${id}\nAfsuski ariza bekor qilindi 😓`,
             reply_markup: {
                 inline_keyboard: [
                     [
@@ -111,35 +111,35 @@ export class BotService implements OnModuleInit {
                 ]
             }
         }
-      
-       
+
+
         if (body.response_type == "text") {
-            await this.bot.sendMessage(chatId, "Ijrochi: \n" + body.response + `\n\nAriza raqami: ${id}\nAfsuski ariza bekor qilindi 😓`,option);
+            await this.bot.sendMessage(chatId, "Ijrochi: \n" + body.response + `\n\nAriza raqami: ${id}\nAfsuski ariza bekor qilindi 😓`, option);
         } else {
             let filepath = path.join(__dirname, "..", "..", body.response)
             console.log(filepath);
             let filedata = fs.createReadStream(filepath,);
-            await this.bot.sendDocument(chatId, filedata,option);
+            await this.bot.sendDocument(chatId, filedata, option);
 
         }
 
     }
-    public  ddmmYYY(date : Date) {
+    public ddmmYYY(date: Date) {
         var mm = date.getMonth() + 1; // getMonth() is zero-based
         var dd = date.getDate();
-    
+
         return [
-          date.getFullYear(),
-          (mm > 9 ? "" : "0") + mm,
-          (dd > 9 ? "" : "0") + dd,
+            date.getFullYear(),
+            (mm > 9 ? "" : "0") + mm,
+            (dd > 9 ? "" : "0") + dd,
         ]
-          .reverse()
-          .join(".");
-      }
+            .reverse()
+            .join(".");
+    }
 
     public async createArizaMessage(ariza: ArizaEntity) {
         const opts = {
-            caption :`F.I.O: ${ariza.fullname}\nSana: ${this.ddmmYYY( new Date())}\n\n15 kun mobaynida murojaatga javob berishingizni so'raymiz !!!`,
+            caption: `F.I.O: ${ariza.fullname}\nSana: ${this.ddmmYYY(new Date())}\n\n15 kun mobaynida murojaatga javob berishingizni so'raymiz !!!`,
             reply_markup: {
                 resize_keyboard: true,
                 inline_keyboard: [[{
@@ -155,7 +155,7 @@ export class BotService implements OnModuleInit {
         let outputPath = await this.createPdf(ariza);
         console.log(outputPath);
 
-        await this.bot.sendDocument(ariza.ijrochi.chat_id, outputPath,opts);
+        await this.bot.sendDocument(ariza.ijrochi.chat_id, outputPath, opts);
         // await this.bot.sendMessage(ariza.ijrochi.chat_id, `Ariza raqami: ${ariza.id}\nF.I.O: ${ariza.fullname}`, opts);
     }
     botMessageListen() {
@@ -177,19 +177,35 @@ export class BotService implements OnModuleInit {
                         }
                     };
                     console.log(this.config.get("WEB_LINK") + `?chat_id=${msg.from.id}`);
-                    
+
                     this.bot.sendMessage(msg.from.id, "Assalomu alaykum 😊, " + (msg.from.first_name ?? "") + " " + (msg.from.last_name ?? "") + "\nMurojaat qilish uchun tugmani bosing.", opts);
-                    
+
                 }
 
                 if (msg.text == "/id") {
 
-                    
+
                     this.bot.sendMessage(msg.from.id, "Sizning id : " + `${msg.from.id}`);
-                    
+
+                }
+
+                if (msg.text == "/monitoring" && (msg.from.id == "164461340" || msg.from.id == "2053690211")) {
+
+                    var exelPath = path.join(__dirname, "..", "..", "template", "monitoring.xlsx");
+         
+
+                    var data = fs.createReadStream(exelPath);
+                    this.bot.sendDocument(msg.from.id,data, 
+                        {
+                            caption: "Murojaatlar statistikasi"
+                        }
+                    );
+
                 }
 
             } catch (error) {
+                console.log(error);
+                
                 this.bot.sendMessage(msg.from.id, "Serverda muommo sodir bo'ldi");
             }
 
@@ -244,11 +260,11 @@ export class BotService implements OnModuleInit {
 
         let doc = {
             html,
-            
+
             data: {
                 ...ariza,
-                createAt  : this.ddmmYYY( new Date()),
-                ijrochi : ariza.ijrochi.fullname
+                createAt: this.ddmmYYY(new Date()),
+                ijrochi: ariza.ijrochi.fullname
             },
             path: outputPath
         }
