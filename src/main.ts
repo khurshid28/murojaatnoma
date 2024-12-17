@@ -16,7 +16,7 @@ async function bootstrap() {
   )
 
   app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }))
-  // app.use(bodyParser.text({ type: 'text/html' }))
+  app.use(bodyParser.text({ type: 'text/html' }))
   app.use(bodyParser.json({
     limit: "10mb"
   }))
