@@ -264,7 +264,7 @@ export class BotService implements OnModuleInit {
             data: {
                 ...ariza,
                 createAt: this.ddmmYYY(new Date()),
-                ijrochi: ariza.ijrochi.fullname
+                ijrochi: ariza?.ijrochi?.fullname
             },
             path: outputPath
         }

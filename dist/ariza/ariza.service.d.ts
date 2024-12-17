@@ -1,7 +1,9 @@
+import { StreamableFile } from '@nestjs/common';
 import { ArizaEntity } from './entity/ariza.entity';
 import { Repository } from 'typeorm';
 import { CreateArizaDto } from './dto/create-ariza.dto';
 import { IjrochiEntity } from 'src/ijrochi/entity/ijrochi.entity';
+import { BotService } from 'src/bot/bot.service';
 import { FinishArizaDto } from './dto/finish-ariza.dto';
 export declare class ArizaService {
     private readonly arizaRepo;
@@ -13,4 +15,5 @@ export declare class ArizaService {
     cancel(id: number, body: FinishArizaDto): Promise<ArizaEntity>;
     create(body: CreateArizaDto): Promise<ArizaEntity>;
     baholash(id: number, baho: string): Promise<void>;
+    download(id: number, botService: BotService): Promise<StreamableFile>;
 }

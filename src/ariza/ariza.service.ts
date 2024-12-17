@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotFoundException, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ArizaEntity } from './entity/ariza.entity';
 import { Repository } from 'typeorm';
@@ -6,6 +6,7 @@ import { CreateArizaDto } from './dto/create-ariza.dto';
 import { IjrochiEntity } from 'src/ijrochi/entity/ijrochi.entity';
 import { BotService } from 'src/bot/bot.service';
 import { FinishArizaDto } from './dto/finish-ariza.dto';
+import { createReadStream } from 'fs';
 
 @Injectable()
 export class ArizaService {
@@ -13,6 +14,7 @@ export class ArizaService {
     constructor(@InjectRepository(ArizaEntity) private readonly arizaRepo: Repository<ArizaEntity>,
 
         @InjectRepository(IjrochiEntity) private readonly ijrochiRepo: Repository<IjrochiEntity>,
+        
 
 
 
@@ -139,5 +141,23 @@ export class ArizaService {
         await this.arizaRepo.save(ariza);
 
     }
+
+
+    async download(id:number,botService :BotService){
+        let ariza = await this.arizaRepo.findOne({
+            where: { id }
+        });
+        console.log(ariza);
+        
+        let output = await botService.createPdf(ariza)
+        const file = createReadStream(output);
+        return new StreamableFile(file, {
+            type: 'application/pdf',
+            disposition: `attachment; filename="ariza-${id}.json"`,
+            
+          });
+    }
+
+
 
 }

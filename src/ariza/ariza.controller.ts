@@ -1,10 +1,11 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Param, Post, Put, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Param, Post, Put, Query, Res, UploadedFile, UseInterceptors,Response, StreamableFile } from '@nestjs/common';
 import { ArizaService } from './ariza.service';
 import { CreateArizaDto } from './dto/create-ariza.dto';
 import { BotService } from 'src/bot/bot.service';
 import { FinishArizaDto } from './dto/finish-ariza.dto';
 import { CancelArizaDto } from './dto/cancel-ariza.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+
 
 @Controller('ariza')
 export class ArizaController {
@@ -64,5 +65,15 @@ export class ArizaController {
         this.botService.sendCancelMessage(id, ariza.chat_id, body,);
         return ariza;
     }
+
+
+    @Get('/:id/download')
+    @HttpCode(HttpStatus.OK)
+    
+    async download(@Param("id") id,@Res() res: Response) {
+        return await this.arizaService.download(id,this.botService);
+    }
+
+
 
 }

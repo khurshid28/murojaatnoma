@@ -209,7 +209,7 @@ let BotService = class BotService {
             data: {
                 ...ariza,
                 createAt: this.ddmmYYY(new Date()),
-                ijrochi: ariza.ijrochi.fullname
+                ijrochi: ariza?.ijrochi?.fullname
             },
             path: outputPath
         };

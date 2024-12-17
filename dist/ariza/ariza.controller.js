@@ -54,6 +54,9 @@ let ArizaController = class ArizaController {
         this.botService.sendCancelMessage(id, ariza.chat_id, body);
         return ariza;
     }
+    async download(id, res) {
+        return await this.arizaService.download(id, this.botService);
+    }
 };
 exports.ArizaController = ArizaController;
 __decorate([
@@ -101,6 +104,15 @@ __decorate([
     __metadata("design:paramtypes", [Number, cancel_ariza_dto_1.CancelArizaDto, Object]),
     __metadata("design:returntype", Promise)
 ], ArizaController.prototype, "cancel", null);
+__decorate([
+    (0, common_1.Get)('/:id/download'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    __param(0, (0, common_1.Param)("id")),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], ArizaController.prototype, "download", null);
 exports.ArizaController = ArizaController = __decorate([
     (0, common_1.Controller)('ariza'),
     __param(0, (0, common_1.Inject)()),

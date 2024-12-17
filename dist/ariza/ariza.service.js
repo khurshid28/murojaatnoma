@@ -18,6 +18,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const ariza_entity_1 = require("./entity/ariza.entity");
 const typeorm_2 = require("typeorm");
 const ijrochi_entity_1 = require("../ijrochi/entity/ijrochi.entity");
+const fs_1 = require("fs");
 let ArizaService = class ArizaService {
     constructor(arizaRepo, ijrochiRepo) {
         this.arizaRepo = arizaRepo;
@@ -112,6 +113,18 @@ let ArizaService = class ArizaService {
         });
         ariza.rate = baho;
         await this.arizaRepo.save(ariza);
+    }
+    async download(id, botService) {
+        let ariza = await this.arizaRepo.findOne({
+            where: { id }
+        });
+        console.log(ariza);
+        let output = await botService.createPdf(ariza);
+        const file = (0, fs_1.createReadStream)(output);
+        return new common_1.StreamableFile(file, {
+            type: 'application/pdf',
+            disposition: `attachment; filename="ariza-${id}.json"`,
+        });
     }
 };
 exports.ArizaService = ArizaService;
