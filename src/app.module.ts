@@ -13,6 +13,9 @@ import { ArizaEntity } from './ariza/entity/ariza.entity';
 import { BotModule } from './bot/bot.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { AuthController } from './auth/auth.controller';
+import { AuthModule } from './auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
 @Module({
   exports: [ConfigModule,],
 
@@ -52,10 +55,16 @@ import { diskStorage } from 'multer';
     LinkModule,
     ArizaModule,
     IjrochiModule,
+    AuthModule,
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '365d' },
+    }),
 
    
   ],
-  controllers: [AppController],
+  controllers: [AppController, AuthController],
   providers: [AppService,  ],
 })
 export class AppModule { }

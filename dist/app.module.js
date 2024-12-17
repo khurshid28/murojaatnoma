@@ -16,6 +16,9 @@ const link_module_1 = require("./link/link.module");
 const ariza_module_1 = require("./ariza/ariza.module");
 const ijrochi_module_1 = require("./ijrochi/ijrochi.module");
 const path = require("path");
+const auth_controller_1 = require("./auth/auth.controller");
+const auth_module_1 = require("./auth/auth.module");
+const jwt_1 = require("@nestjs/jwt");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -51,8 +54,14 @@ exports.AppModule = AppModule = __decorate([
             link_module_1.LinkModule,
             ariza_module_1.ArizaModule,
             ijrochi_module_1.IjrochiModule,
+            auth_module_1.AuthModule,
+            jwt_1.JwtModule.register({
+                global: true,
+                secret: process.env.JWT_SECRET,
+                signOptions: { expiresIn: '365d' },
+            }),
         ],
-        controllers: [app_controller_1.AppController],
+        controllers: [app_controller_1.AppController, auth_controller_1.AuthController],
         providers: [app_service_1.AppService,],
     })
 ], AppModule);
