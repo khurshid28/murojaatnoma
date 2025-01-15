@@ -27,18 +27,18 @@ let ArizaService = class ArizaService {
     async getAll() {
         let ariza = await this.arizaRepo.find({
             relations: {
-                ijrochi: true
-            }
+                ijrochi: true,
+            },
         });
         return ariza;
     }
     async getOne(id) {
         let ariza = await this.arizaRepo.findOne({
             where: { id },
-            relations: { ijrochi: true }
+            relations: { ijrochi: true },
         });
         if (!ariza) {
-            throw new common_1.NotFoundException("Ariza topilmadi");
+            throw new common_1.NotFoundException('Ariza topilmadi');
         }
         return ariza;
     }
@@ -47,20 +47,20 @@ let ArizaService = class ArizaService {
             where: { id },
         });
         if (!ariza) {
-            throw new common_1.NotFoundException("Ariza topilmadi");
+            throw new common_1.NotFoundException('Ariza topilmadi');
         }
-        if (ariza.status == "created") {
+        if (ariza.status == 'created') {
             ariza.response = body.response;
             ariza.response_type = body.response_type;
-            ariza.status = "finished";
+            ariza.status = 'finished';
             return await this.arizaRepo.save(ariza);
         }
         else {
-            if (ariza.status == "finished") {
-                throw new common_1.BadRequestException("Ariza allaqachon tugatilgan");
+            if (ariza.status == 'finished') {
+                throw new common_1.BadRequestException('Ariza allaqachon tugatilgan');
             }
-            else if (ariza.status == "canceled") {
-                throw new common_1.BadRequestException("Ariza bekor qilingan");
+            else if (ariza.status == 'canceled') {
+                throw new common_1.BadRequestException('Ariza bekor qilingan');
             }
         }
     }
@@ -69,20 +69,20 @@ let ArizaService = class ArizaService {
             where: { id },
         });
         if (!ariza) {
-            throw new common_1.NotFoundException("Ariza topilmadi");
+            throw new common_1.NotFoundException('Ariza topilmadi');
         }
-        if (ariza.status == "created") {
+        if (ariza.status == 'created') {
             ariza.response = body.response;
             ariza.response_type = body.response_type;
-            ariza.status = "canceled";
+            ariza.status = 'canceled';
             return await this.arizaRepo.save(ariza);
         }
         else {
-            if (ariza.status == "finished") {
-                throw new common_1.BadRequestException("Ariza allaqachon tugatilgan");
+            if (ariza.status == 'finished') {
+                throw new common_1.BadRequestException('Ariza allaqachon tugatilgan');
             }
-            else if (ariza.status == "canceled") {
-                throw new common_1.BadRequestException("Ariza bekor qilingan");
+            else if (ariza.status == 'canceled') {
+                throw new common_1.BadRequestException('Ariza bekor qilingan');
             }
         }
     }
@@ -92,31 +92,31 @@ let ArizaService = class ArizaService {
                 id: body.ijrochi_id,
             },
             relations: {
-                arizalar: true
-            }
+                arizalar: true,
+            },
         });
         if (!ijrochi) {
-            throw new common_1.NotFoundException("Ijrochi topilmadi");
+            throw new common_1.NotFoundException('Ijrochi topilmadi');
         }
         let NewAriza = this.arizaRepo.create(body);
         ijrochi.arizalar ??= [];
         ijrochi.arizalar.push(NewAriza);
         await this.ijrochiRepo.save(ijrochi);
-        console.log("come >>>");
+        console.log('come >>>');
         ijrochi.arizalar = undefined;
         NewAriza.ijrochi = ijrochi;
         return await this.arizaRepo.save(NewAriza);
     }
     async baholash(id, baho) {
         let ariza = await this.arizaRepo.findOne({
-            where: { id }
+            where: { id },
         });
         ariza.rate = baho;
         await this.arizaRepo.save(ariza);
     }
     async download(id, botService) {
         let ariza = await this.arizaRepo.findOne({
-            where: { id }
+            where: { id },
         });
         console.log(ariza);
         let output = await botService.createPdf(ariza);

@@ -26,6 +26,10 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', }),
     __metadata("design:type", String)
+], IjrochiEntity.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', }),
+    __metadata("design:type", String)
 ], IjrochiEntity.prototype, "fullname", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

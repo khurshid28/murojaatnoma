@@ -11,6 +11,9 @@ export class IjrochiEntity {
     nomi: string;
 
     @Column({ type: 'varchar', })
+    role: string;
+
+    @Column({ type: 'varchar', })
     fullname: string;
 
     @Column()
