@@ -16,12 +16,17 @@ import { diskStorage } from 'multer';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
+
+
+
+
 @Module({
   exports: [ConfigModule,],
 
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+     
     }),
   
   
@@ -32,7 +37,7 @@ import { JwtModule } from '@nestjs/jwt';
         inject: [ConfigService],
         useFactory: async (config: any) => {
           return {
-            type: process.env.DB_TYPE as any,
+            type: config.get("DB_TYPE") ,
             host: process.env.DB_HOST ,
             port: parseInt(process.env.DB_PORT),
             username:process.env.DB_USER,
@@ -43,6 +48,7 @@ import { JwtModule } from '@nestjs/jwt';
             // logging: true,
             migrationsTableName: 'migration',
             insecureAuth: true,
+
             migrations: ['./migration/*.ts'],
             cli: {
               migrationsDir: './migration',

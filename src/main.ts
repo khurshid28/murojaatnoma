@@ -10,7 +10,7 @@ import * as fs from "fs"
 
 async function bootstrap() {
 
-  const app = await NestFactory.create(AppModule,{cors : true});
+  const app = await NestFactory.create(AppModule,);
 
   app.use(function (req, res, next) {
     //Enabling CORS
