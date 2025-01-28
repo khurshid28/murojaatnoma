@@ -32,7 +32,7 @@ import { JwtModule } from '@nestjs/jwt';
         inject: [ConfigService],
         useFactory: async (config: any) => {
           return {
-            type: process.env.DB_TYPE,
+            type: process.env.DB_TYPE as any,
             host: process.env.DB_HOST ,
             port: parseInt(process.env.DB_PORT),
             username:process.env.DB_USER,

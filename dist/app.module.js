@@ -34,12 +34,12 @@ exports.AppModule = AppModule = __decorate([
                 inject: [config_1.ConfigService],
                 useFactory: async (config) => {
                     return {
-                        type: config.get("DB_TYPE"),
-                        host: config.get("DB_HOST"),
-                        port: parseInt(config.get("DB_PORT")),
-                        username: config.get("DB_USER"),
-                        password: config.get("DB_PASSWORD"),
-                        database: config.get("DB_NAME"),
+                        type: process.env.DB_TYPE,
+                        host: process.env.DB_HOST,
+                        port: parseInt(process.env.DB_PORT),
+                        username: process.env.DB_USER,
+                        password: process.env.DB_PASSWORD,
+                        database: process.env.DB_NAME,
                         entities: [path.join(__dirname, '**', 'entity', '*.entity.{ts,js}'),],
                         synchronize: true,
                         migrationsTableName: 'migration',
