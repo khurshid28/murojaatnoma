@@ -10,15 +10,22 @@ import * as fs from "fs"
 
 async function bootstrap() {
 
-  const app = await NestFactory.create(AppModule,);
+  const app = await NestFactory.create(AppModule,{
+    cors : {
+      origin : true,
+      credentials  : false,
+      
 
-  app.use(function (req, res, next) {
-    //Enabling CORS
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
-    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-      next();
-    });
+    }
+  });
+
+  // app.use(function (req, res, next) {
+  //   //Enabling CORS
+  //   res.header("Access-Control-Allow-Origin", "*");
+  //   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+  //   // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+  //     next();
+  //   });
  
   app.use(morgan(':method :url :status :res[content-length] - :response-time ms')
   )
