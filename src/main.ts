@@ -13,6 +13,10 @@ async function bootstrap() {
     cors: {
       origin: true,
     },
+    httpsOptions: {
+      key: fs.readFileSync('./secrets/cert.key'),
+      cert: fs.readFileSync('./secrets/ca.crt'),
+    },
   });
 
   // app.use(function (req, res, next) {
