@@ -17,8 +17,8 @@ async function bootstrap() {
       origin: true,
     },
     httpsOptions: {
-      key: fs.readFileSync(path.join(__dirname,"..","secrects","privkey.pem")),
-      cert: fs.readFileSync(path.join(__dirname,"..","secrects","cert.pem")),
+      key: fs.readFileSync(path.join(__dirname,"..","secrets","privkey.pem")),
+      cert: fs.readFileSync(path.join(__dirname,"..","secrets","cert.pem")),
     },
   });
 
