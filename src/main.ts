@@ -7,15 +7,18 @@ import * as multer from 'multer';
 import * as morgan from 'morgan';
 
 import * as fs from 'fs';
+import * as path from 'path';
 
 async function bootstrap() {
+  console.log(path.join(__dirname,"..","secrects","privkey.pem"));
+  
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin: true,
     },
     httpsOptions: {
-      key: fs.readFileSync('../secrets/privkey.pem'),
-      cert: fs.readFileSync('../secrets/cert.pem'),
+      key: fs.readFileSync(path.join(__dirname,"..","secrects","privkey.pem")),
+      cert: fs.readFileSync(path.join(__dirname,"..","secrects","cert.pem")),
     },
   });
 
