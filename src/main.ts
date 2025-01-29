@@ -14,8 +14,8 @@ async function bootstrap() {
       origin: true,
     },
     httpsOptions: {
-      key: fs.readFileSync('./secrets/cert.key'),
-      cert: fs.readFileSync('./secrets/ca.crt'),
+      key: fs.readFileSync('./secrets/privkey.pem'),
+      cert: fs.readFileSync('./secrets/cert.pem'),
     },
   });
 
