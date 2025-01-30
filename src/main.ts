@@ -17,8 +17,15 @@ async function bootstrap() {
       origin: true,
     },
     httpsOptions: {
-      key: fs.readFileSync(path.join(__dirname,"..","secrets","privkey.pem")),
-      cert: fs.readFileSync(path.join(__dirname,"..","secrets","cert.pem")),
+    //   rejectUnauthorized: false,
+    // requestCert: true,
+      
+
+      // key: fs.readFileSync(path.join(__dirname,"..","secrets","privkey.pem")),
+      // cert: fs.readFileSync(path.join(__dirname,"..","secrets","cert.pem")),
+
+      key: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-key.pem') ),
+     cert: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-cert.pem'))
     },
   });
 
