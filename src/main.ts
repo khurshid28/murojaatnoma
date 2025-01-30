@@ -24,8 +24,13 @@ async function bootstrap() {
       // key: fs.readFileSync(path.join(__dirname,"..","secrets","privkey.pem")),
       // cert: fs.readFileSync(path.join(__dirname,"..","secrets","cert.pem")),
 
-      key: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-key.pem') ),
-     cert: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-cert.pem'))
+    //   key: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-key.pem') ),
+    //  cert: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-cert.pem'))
+
+
+
+    key: fs.readFileSync(path.join(__dirname,"..","test2",'key1.pem') ),
+    cert: fs.readFileSync(path.join(__dirname,"..","test2",'cert1.pem'))
     },
   });
 

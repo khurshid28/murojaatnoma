@@ -13,8 +13,8 @@ async function bootstrap() {
             origin: true,
         },
         httpsOptions: {
-            key: fs.readFileSync(path.join(__dirname, "..", "test_secrets", 'server-key.pem')),
-            cert: fs.readFileSync(path.join(__dirname, "..", "test_secrets", 'server-cert.pem'))
+            key: fs.readFileSync(path.join(__dirname, "..", "test2", 'key1.pem')),
+            cert: fs.readFileSync(path.join(__dirname, "..", "test2", 'cert1.pem'))
         },
     });
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
