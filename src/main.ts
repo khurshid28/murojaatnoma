@@ -16,22 +16,25 @@ async function bootstrap() {
     cors: {
       origin: true,
     },
-    httpsOptions: {
-    //   rejectUnauthorized: false,
-    // requestCert: true,
+    // httpsOptions: {
+    // //   rejectUnauthorized: false,
+    // // requestCert: true,
       
 
-      // key: fs.readFileSync(path.join(__dirname,"..","secrets","privkey.pem")),
-      // cert: fs.readFileSync(path.join(__dirname,"..","secrets","cert.pem")),
+    //   // key: fs.readFileSync(path.join(__dirname,"..","secrets","privkey.pem")),
+    //   // cert: fs.readFileSync(path.join(__dirname,"..","secrets","cert.pem")),
 
-    //   key: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-key.pem') ),
-    //  cert: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-cert.pem'))
+    // //   key: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-key.pem') ),
+    // //  cert: fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-cert.pem')),
+    // //  ca : fs.readFileSync(path.join(__dirname,"..","test_secrets",'server-csr.pem')),
 
 
+    // //   key: fs.readFileSync(path.join(__dirname,"..","test3",'key.pem') ),
+    // //  cert: fs.readFileSync(path.join(__dirname,"..","test3",'cert.pem')),
 
-    key: fs.readFileSync(path.join(__dirname,"..","test2",'key1.pem') ),
-    cert: fs.readFileSync(path.join(__dirname,"..","test2",'cert1.pem'))
-    },
+    // // key: fs.readFileSync(path.join(__dirname,"..","test2",'key1.pem') ),
+    // // cert: fs.readFileSync(path.join(__dirname,"..","test2",'cert1.pem'))
+    // },
   });
 
   // app.use(function (req, res, next) {
