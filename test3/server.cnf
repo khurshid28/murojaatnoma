@@ -1,0 +1,29 @@
+[ req ]
+default_bits           = 4096
+days                   = 9999
+distinguished_name     = req_distinguished_name
+attributes             = req_attributes
+prompt                 = no
+x509_extensions        = v3_ca
+
+[ req_distinguished_name ]
+
+
+
+C                      = UZ
+ST                     = TA
+L                      = TASHKENT
+O                      = Premium Pay
+OU                     = techops
+CN                     = 90.156.197.252
+emailAddress           = khurshidi2827@gmail.com
+
+[ req_attributes ]
+challengePassword      = khurshid-2827
+
+[ v3_ca ]
+authorityInfoAccess = @issuer_info
+
+[ issuer_info ]
+OCSP;URI.0 = http://cert.int-x3.letsencrypt.org/
+caIssuers;URI.0 = http://pki.goog/gsr2/GTS1O1.crt

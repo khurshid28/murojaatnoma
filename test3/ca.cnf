@@ -1,0 +1,31 @@
+[ ca ]
+default_ca      = CA_default
+
+[ CA_default ]
+serial = ca-serial
+crl = ca-crl.pem
+# database = ca-database.txt
+name_opt = CA_default
+cert_opt = CA_default
+default_crl_days = 9999
+default_md = md5
+
+[ req ]
+default_bits           = 4096
+days                   = 9999
+distinguished_name     = req_distinguished_name
+attributes             = req_attributes
+prompt                 = no
+output_password        = khurshid-2827
+
+[ req_distinguished_name ]
+C                      = UZ
+ST                     = Ta
+L                      = Boston
+O                      = Premium Pay
+OU                     = techops
+CN                     = ca
+emailAddress           = khurshdii2827@gmail.com
+
+[ req_attributes ]
+challengePassword      = khurshid-2827
