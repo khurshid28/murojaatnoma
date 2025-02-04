@@ -10,7 +10,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 async function bootstrap() {
-  console.log(path.join(__dirname,"..","secrects","privkey.pem"));
+  // console.log(path.join(__dirname,"..","secrects","privkey.pem"));
   
   const app = await NestFactory.create(AppModule, {
     cors: {
